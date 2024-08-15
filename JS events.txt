@@ -1,0 +1,47 @@
+
+OnLoad Events:
+-----------------------------------------------------
+function Onload(executionContext){
+try{
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Sample code for Onload Event
+Xrm.Utility.alertDialog("Good evening and Welcome to XRM with JS");
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+------------------------------------------------------
+//Execute all OnSave events
+
+function OnSave(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+
+------------------------------------------------------
+//Sample code for OnSave Event
+
+Xrm.Utility.alertDialog("This is an alert for OnSave Event");
+}
+catch(e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+------------------------------------------------------
+//Execute Field on Change events here, this could be specific to each field
+function OnChange(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Sample code for on Change events
+Xrm.Utility.alertDialog("This is an alert for on Change Event.");
+}
+catch(e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+//Get Lookup ID

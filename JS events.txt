@@ -1,4 +1,3 @@
-
 OnLoad Events:
 -----------------------------------------------------
 function Onload(executionContext){
@@ -41,6 +40,496 @@ Xrm.Utility.alertDialog("This is an alert for on Change Event.");
 }
 catch(e) {
 Xrm.Utility.alertDialog(e.message);
+}
+}
+
+---------------------------------------------------------
+//Get Lookup ID
+function GetEntityLogicalName(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Get entity logical name, give lookup field logical name
+var entityName = formContext.getAttribute("ccc_booking").getValue()[0].entityType;
+Xrm.Navigation.openAlertDialog(entityName);
+}
+catch(e) {
+Xrm.Navigation.openAlertDialog(e.message);
+}
+}
+
+-----------------------------------------------------------
+//Get the text value from filed
+function GetTextValue(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Get text value of the field, give field logical name
+var textValue = formContext.getAttribute("new_employeebusinessid").getValue();
+Xrm.Utility.alertDialog(textValue);
+}
+catch(e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+------------------------------------------------------------
+//Get the database value from Option set field
+function GetOptionSetDataBaseValue(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Get database value of the option set field, give field logical name 
+var databaseValue = formContext.getAttribute("new_item").getValue();
+Xrm.Utility.alertDialog(databaseValue);
+}
+catch(e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+-------------------------------------------------------------
+//Get the Option Set text value
+function GetOptionSetTextValue(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Get text value of the option set field here, Give field logical name here
+var optionSetTextValue = formContext.getAttribute("new_item").getText();
+Xrm.Utility.alertDialog(optionSetTextValue);
+}
+catch(e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+-------------------------------------------------------------
+//Get the database value from Two Option Set Field
+function GetTwoOptionSetDataBaseValue(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Get the value of the two option set field here, Give field logical name here
+var databaseValue = formContext.getAttribute("new_type").getValue();
+Xrm.Utility.alertDialog(databaseValue);
+}
+catch(e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+---------------------------------------------------------------
+//Get the Date Field Value
+function GetDateFieldValue(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Get value of the field here, Give field logical name here
+var lastusedincampaign = formContext.getAttribute("lastusedincampaign").getValue();
+//Get Year
+char year = lastusedincampaign.getFullYear();
+//Get Month
+char month = lastusedincampaign.getMonth();
+//Get Date(Day)
+char date = lastusedincampaign.getDate();
+
+string new_Date_format = (date+5)+month+year
+if(lastusedincampaign==new_Date_format)
+Alert("your Payment due date is nearby");
+}
+catch(e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+----------------------------------------------------------------
+//Set the text value to Text Field
+function SetTextFieldValue(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Set the field value here
+formContext.getAttribute("name").setValue("Auto Value");
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+----------------------------------------------------------------
+//Set the database value to Option Set Field
+function SetOptionSetDatabaseValue(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Set the field value here
+formContext.getAttribute("new_item").setValue(1234567);
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+------------------------------------------------------------------
+//Set the Date Field Value
+function SetDateFieldValue(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Get the current Date
+var dateofbirth = new Date();
+//Set the current Date to date field
+formContext.getAttribute("new_dateofbirth").setValue(dateofbirth);
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message)
+}
+}
+
+------------------------------------------------------------------
+//Set the Field Requirement Level
+function SetTheFieldRequirementLevel(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Set as Business Required
+formContext.getAttribute("new_dateofbirth").setRequiredLevel("required");
+//Set as Business Recommended
+formContext.getAttribute("new_dateofbirth").setRequiredLevel("recommended");
+//Set as Optional
+formContext.getAttribute("new_dateofbirth").setRequiredLevel("none");
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+--------------------------------------------------------------------
+//Enable or Disable Field (Lock/Unlock)
+function SetTheFieldState(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Set field as Read only
+formContext.getAttribute("new_dateofbirth").setDisable(true);
+//Set field as Editable
+formContext.getAttribute("new_dateofbirth").setDisable(false);
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+---------------------------------------------------------------------
+//Show Hide Fields
+function ShowHideFields(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Show Field
+formContext.getAttribute("new_dateofbirth").setVisible(true);
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+---------------------------------------------------------------------
+Show or Hide Navigation Items
+function ShowNavigationItems(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Show Organizations
+formContext.ui.navigation.items.get("organizations").setVisible(true);
+//Hide Organizations
+formContext.ui.navigation.items.get("organizations").setVisible(false);
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+---------------------------------------------------------------------
+//Set Form Notification
+function SetFormNotification(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Set Form Notification
+formContext.ui.setFormNotification("This is a MS DYNAMICS CRM Form Notification", "INFO", "1");
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+---------------------------------------------------------------------
+//Clear Form Notification 
+function ClearFormNotification(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Clear Form Notification
+formContext.ui.clearFormNotification("This is a MS DYNAMICS CRM Form Notification", "INFO", "1");
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+---------------------------------------------------------------------
+//Show Progress Indicator
+function ShowProgressIndicator(){
+try {
+Xrm.Utility.showProgressIndicator("The Page is loading... Please wait...");
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+----------------------------------------------------------------------
+//Clear Progress Indicator
+function ClearProgressIndicator() {
+try {
+Xrm.Utility.closeProgressIndicator();
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+-----------------------------------------------------------------------
+//Show Hide Tabs based on field values
+function ShowHideTabs(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+var isProcessed = formContext.getAttribute("progress_isprocessed").getValue(); //Two Option set field
+var generalTab = formContext.ui.tabs.get("General"); //Get Tab
+if (isProcessed == false) {
+generalTab.setVisible(false); //Hide Tab
+} else {
+generalTab.setVisible(true); //Show Tab
+}
+formContext.ui.tabs.get("CASH_PLAN_FLOW_DETAILS").setDisplayState("collapsed"); //Collapse Tab
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+------------------------------------------------------------------------
+//Show Hide Section based on field values
+function ShowHideSection(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+var isProcessed = formContext.getAttribute("progress_isprocessed").getValue(); //Two Option set field
+var generalTab = formContext.ui.tabs.get("GENERAL"); //Get Tab
+var asstPackages = generalTab.sections.get("ASSISTANCE PACKAGES"); //Get sections
+var payments = generalTab.sections.get("PAYMENT_RECORDS"); //Get sections
+if (isProcessed == false) {
+asstPackages.setVisible(true); //Show Section
+payments.setVisible(false); //Hide Section
+} else {
+asstPackages.setVisible(false); //Show Section
+payments.setVisible(true); //Hide Section
+}
+formContext.ui.tabs.get("CASH_PLAN_FLOW_DETAILS").setDisplayState("collapsed"); //Collapse Tab
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+-------------------------------------------------------------------------
+//Save Form
+function SavForm(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Save Form
+formContext.data.entity.save();
+}
+}
+catch (e);
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+------------------------------------------------------------------------
+//Save Form and Close Record
+function SaveFormAndClose(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Save Form and Close
+formContext.data.entity.save("saveandclose");
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+-----------------------------------------------------------------------
+//Get Dirty Field from Form
+function GetFormDirtyField(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+var attributes = formContext.data.entity.attributes.get()
+for (var i in attributes) {
+var attribute = attributes[i];
+if (attribute.getIsDirty()) {
+Xrm.Utility.alertDialog("Attribute dirty:" + attribute.getName());
+}
+}
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+-----------------------------------------------------------------------
+//Get Form Type
+function GetFormType(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Get Form Type
+var formType = formContext.ui.getFormType();
+Xrm.Utility.alertDialog(formType);
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+---------------------------------------------------------------------
+//Get GUID of the Current Record
+function GetGuidofTheRecord(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Get the current Record GUID
+var recordGuid = formContext.data.entity.getId();
+Xrm.Utility.alertDialog(recordGuid);
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+---------------------------------------------------------------------
+//Get GUID of the Current User
+function GetGuidofTheRecord(executionContext) {
+try {
+//Get the form context
+var formContext = executionContext.getFormContext();
+//Get the current User GUID
+var userGuid = formContext.data.entity.getUserId();
+Xrm.Utility.alertDialog(userGuid);
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+---------------------------------------------------------------------
+//Retrieve Multiple Record using Xrm.WebApi
+function RetrieveMultipleRecords() {
+try {
+var entityName = "new_organization"; //Entity Logical Name
+var query = "?$select=new_organizationname, new_noofemployees, new_revenue&$top=3"; //Columns to Retrieve
+Xrm.WebApi.retrieveMultipleRecords(entityName, query).then(
+function success(result) {
+Xrm.Utility.alertDialog ("Success");
+},
+function (error) {
+Xrm.Utility.alertDialog ("Error");
+}
+};
+alert(result);
+}
+catch (e) {
+Xrm.Utility.alertDialog(e.message);
+}
+}
+
+---------------------------------------------------------------------
+//Call Asynchronous Action
+function CallAsynchronousAction(executionContext) {
+try {
+//Get the form Context
+var formContext = executionContext.getFormContext();
+var webApiVersionNumber = "v9.1";
+var serverURL = formContext.context.getClientUrl() + "/api/data/" = webApiVersionNumber + "/";
+var actionName = "new_customaction"; //Action name
+var data = {}; //Action Parameters
+if (typeof (data) == "undefined") {
+data = {};
+}
+var oDataEndPoint = serverURL+ actionName;
+var req = new XMLHttpRequest();
+req.open("POST", oDataEndPoint, true); //Action will be invoked Asynchronously
+req.setRequestHeader("Accept", "application/json");
+req.setRequestHeader("Content Type", :application/json; charset=utf_8");
+req.setRequestHeader("OData-MaxVersion", "4.0");
+req.setRequestHeader("OData-Version", "4.0");
+req.onreadystatechange = function () {
+if (this.readyState == 4) {
+req.onreadystatechange = null;
+if (this.status == 204 || this.status == 200) {
+if (this.statusText == "No Content"||this.statusText == "") //In case of 204
+var response = req.response;
+else {
+var response = JSON.parse(req.response);
+}
+} else {
+var error = JSON.parse(req.response).error;
+Xrm.Utility.alertDialog(error.message);
+}
+}
+
+-----------------------------------------------------------------------
+
+//Call Synchronous Action
+function CallSynchronousAction(executionContext) {
+try {
+//Get the form Context
+var formContext = executionContext.getFormContext();
+var webApiVersionNumber = "v9.1";
+var serverURL = formContext.context.getClientUrl() + "/api/data/" = webApiVersionNumber + "/";
+var actionName = "new_customaction"; //Action name
+var data = {}; //Action Parameters
+if (typeof (data) == "undefined") {
+data = {};
+}
+var oDataEndPoint = serverURL+ actionName;
+var req = new XMLHttpRequest();
+req.open("POST", oDataEndPoint, true); //Action will be invoked Asynchronously
+req.setRequestHeader("Accept", "application/json");
+req.setRequestHeader("Content Type", :application/json; charset=utf_8");
+req.setRequestHeader("OData-MaxVersion", "4.0");
+req.setRequestHeader("OData-Version", "4.0");
+req.onreadystatechange = function () {
+if (this.readyState == 4) {
+req.onreadystatechange = null;
+if (this.status == 204 || this.status == 200) {
+if (this.statusText == "No Content"||this.statusText == "") //In case of 204
+var response = req.response;
+else {
+var response = JSON.parse(req.response);
+}
+} else {
+var error = JSON.parse(req.response).error;
+Xrm.Utility.alertDialog(error.message);
+}
+}
+
+----------------------------------------------------------------------
+
 }
 }
 
